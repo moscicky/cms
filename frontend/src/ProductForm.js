@@ -17,7 +17,6 @@ class ProductForm extends React.Component {
     }
 
     onNameChange = (field) => {
-        console.log(field.target.value)
         this.setState(
             {
                 product: {
@@ -29,7 +28,6 @@ class ProductForm extends React.Component {
     }
 
     onDescriptionChange = (field) => {
-        console.log(field.target.value)
         this.setState(
             {
                 product: {
@@ -41,7 +39,6 @@ class ProductForm extends React.Component {
     }
 
     onUrlChange = (field) => {
-        console.log(field.target.value)
         this.setState(
             {
                 product: {
@@ -54,7 +51,6 @@ class ProductForm extends React.Component {
 
     onFormSubmit = (e) => {
         e.preventDefault()
-        console.log(this.state)
         axios({
             method: 'post',
             url: "http://localhost:8080/products",

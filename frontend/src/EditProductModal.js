@@ -5,7 +5,6 @@ import axios from "axios";
 class EditProductModal extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props)
         this.state = {
             show: props.show,
             product: props.product
@@ -13,7 +12,6 @@ class EditProductModal extends React.Component {
     }
 
     onNameChange = (field) => {
-        console.log(field.target.value)
         this.setState(
             {
                 product: {
@@ -25,7 +23,6 @@ class EditProductModal extends React.Component {
     }
 
     onDescriptionChange = (field) => {
-        console.log(field.target.value)
         this.setState(
             {
                 product: {
@@ -37,7 +34,6 @@ class EditProductModal extends React.Component {
     }
 
     onUrlChange = (field) => {
-        console.log(field.target.value)
         this.setState(
             {
                 product: {

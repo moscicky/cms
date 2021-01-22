@@ -38,10 +38,6 @@ class Table extends React.Component {
             })
     }
 
-    onProductEdit = (product) => {
-        console.log(product)
-    }
-
     render() {
         return (
             <div>

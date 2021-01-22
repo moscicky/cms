@@ -15,7 +15,6 @@ class ContactForm extends React.Component {
     }
 
     onEmailChange = (field) => {
-        console.log(field.target.value)
         this.setState(
             {
                 contact: {
@@ -27,7 +26,6 @@ class ContactForm extends React.Component {
     }
 
     onMsgChange = (field) => {
-        console.log(field.target.value)
         this.setState(
             {
                 contact: {
@@ -40,7 +38,6 @@ class ContactForm extends React.Component {
 
     onFormSubmit = (e) => {
         e.preventDefault()
-        console.log(this.state)
         axios({
             method: 'post',
             url: "http://localhost:8080/contact",
