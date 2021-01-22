@@ -3,14 +3,16 @@ import axios from "axios";
 import {Button, Col, Form, Row} from "react-bootstrap";
 
 class ProductForm extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+
         this.state = {
             product: {
                 name: "",
                 description: "",
                 imageUrl: "",
             },
+
         }
     }
 

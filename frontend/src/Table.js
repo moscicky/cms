@@ -2,6 +2,7 @@ import * as React from "react";
 import axios from "axios";
 import Product from "./Product";
 import {Container} from "react-bootstrap";
+import EditProductModal from "./EditProductModal";
 
 class Table extends React.Component {
     constructor() {
@@ -37,12 +38,18 @@ class Table extends React.Component {
             })
     }
 
+    onProductEdit = (product) => {
+        console.log(product)
+    }
+
     render() {
         return (
             <div>
                 <Container>
                 {this.state.products.map(p => (
-                    <Product product={p} key={p.id} onDelete={this.onProductDelete}/>
+                    <Product product={p} key={p.id}
+                             onDelete={this.onProductDelete}
+                             onEdit={this.onProductEdit}/>
                 ))}
                 </Container>
             </div>
