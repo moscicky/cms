@@ -69,7 +69,7 @@ class ContactForm extends React.Component {
                                           onChange={this.onMsgChange} value={this.state.contact.message} required/>
                         </Form.Group>
                         <Button variant="primary" type="submit">
-                            Submit
+                            Send
                         </Button>
                     </Form>
                 </Col>
