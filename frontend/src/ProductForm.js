@@ -1,6 +1,5 @@
 import * as React from "react";
 import axios from "axios";
-import Product from "./Product";
 import {Button, Col, Form, Row} from "react-bootstrap";
 
 class ProductForm extends React.Component {
@@ -72,7 +71,7 @@ class ProductForm extends React.Component {
     render() {
         return (
             <Row>
-                <Col lg={{ span: 4, offset: 4 }}>
+                <Col lg={{span: 4, offset: 4}}>
                     <Form onSubmit={this.onFormSubmit}>
                         <Form.Group controlId="formProductName">
                             <Form.Label>Product name</Form.Label>
