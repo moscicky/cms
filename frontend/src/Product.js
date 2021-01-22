@@ -1,6 +1,7 @@
 import {Button, Card, Col, Row} from "react-bootstrap";
 import ShowProductModal from "./ShowProductModal";
 import * as React from "react";
+import EditProductModal from "./EditProductModal";
 
 class Product extends React.Component {
 
@@ -8,7 +9,7 @@ class Product extends React.Component {
         super(props);
         this.state = {
             showShowModal: false,
-
+            showEditModal: false
         }
     }
 
@@ -24,6 +25,18 @@ class Product extends React.Component {
         })
     }
 
+    toggleEditModal = () => {
+        this.setState(prevState => ({
+            showEditModal: !prevState.showEditModal
+        }))
+    }
+
+    onCancelEditModal = () => {
+        this.setState({
+            showEditModal: false
+        })
+    }
+
     render() {
         return (
             <>
@@ -36,7 +49,7 @@ class Product extends React.Component {
                         <p style={{textAlign: "left"}}>{this.props.product.description}</p>
                         <div className="buttonWrapper">
                             <Button variant="info" onClick={this.toggleShowModal}>View</Button>
-                            <Button variant="warning">Edit</Button>
+                            <Button variant="warning" onClick={this.toggleEditModal}>Edit</Button>
                             <Button variant="danger"
                                     onClick={() => this.props.onDelete(this.props.product.id)}>Delete</Button>
                         </div>
@@ -45,6 +58,9 @@ class Product extends React.Component {
                 <ShowProductModal show={this.state.showShowModal}
                                   product={this.props.product}
                                   onCancel={this.onCancelShowModal}/>
+                <EditProductModal show={this.state.showEditModal}
+                                  product={this.props.product}
+                                  onCancel={this.onCancelEditModal}/>
             </>
         )
     }
