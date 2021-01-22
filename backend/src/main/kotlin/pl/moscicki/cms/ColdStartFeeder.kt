@@ -26,6 +26,8 @@ class ColdStartFeeder(val productRepository: ProductRepository): CommandLineRunn
                 imageUrl = "https://f00.esfr.pl/foto/7/72207318729/6e3611c5fec31e62e4de208441b85954/whirlpool-wfo-3t133-p-6-5-x,72207318729_8.jpg"
             )
         )
-        productRepository.saveAll(products)
+        if (productRepository.count() == 0L) {
+            productRepository.saveAll(products)
+        }
     }
 }

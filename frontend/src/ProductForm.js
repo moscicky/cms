@@ -7,9 +7,9 @@ class ProductForm extends React.Component {
         super();
         this.state = {
             product: {
-                "name": "",
-                "description": "",
-                "imageUrl": "",
+                name: "",
+                description: "",
+                imageUrl: "",
             },
         }
     }
@@ -61,9 +61,9 @@ class ProductForm extends React.Component {
         })
         this.setState({
             product: {
-                "name": "",
-                "description": "",
-                "imageUrl": "",
+                name: "",
+                description: "",
+                imageUrl: "",
             }
         })
     }

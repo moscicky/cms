@@ -2,29 +2,54 @@ import './App.css';
 import Table from './Table'
 import ProductForm from "./ProductForm";
 import {Button, Container, Row} from "react-bootstrap";
-import {useEffect, useState} from "react";
+import * as React from "react";
+import ContactForm from "./ContactForm";
 
-function App() {
-    const [page, setPage] = useState('table');
-    return (
-        <div className="App">
-            <Container>
-                <Row style={{marginBottom: '30px', marginTop: '30px'}}>
-                    <div className="buttonWrapperMain">
-                        <Button variant="success" onClick={() => setPage('newProduct')}>New Product</Button>
-                        <Button variant="success" onClick={() => setPage('table')}>Table</Button>
-                        <Button variant="info" onClick={() => setPage('contactForm')}>Contact form</Button>
-                    </div>
-                </Row>
-                <Row>
-                    {page === 'table' && <Table />}
-                    {page === 'newProduct' && <div>new pro</div>}
-                    {page === 'contactForm' && <div>contact form</div>}
-                </Row>
-            </Container>
+class App extends React.Component{
+    constructor(props) {
+        super(props)
+        this.state = {
+            page: "table"
+        }
+    }
 
-        </div>
-    );
+    setPage = (page) => {
+        this.setState(
+            {
+                page: page
+            }
+        )
+    }
+
+    selectPage = () => {
+        switch (this.state.page){
+            case "table":
+                return <Table/>
+            case "newProduct":
+                return <ProductForm/>
+            case "contactForm":
+                return <ContactForm/>
+            default:
+                return <Table/>
+        }
+    }
+    render() {
+        return (
+            <div className="App">
+                <Container>
+                    <Row style={{marginBottom: '30px', marginTop: '30px'}}>
+                        <div className="buttonWrapperMain">
+                            <Button variant="success" onClick={() => this.setPage('newProduct')}>New Product</Button>
+                            <Button variant="success" onClick={() => this.setPage('table')}>Table</Button>
+                            <Button variant="info" onClick={() => this.setPage('contactForm')}>Contact form</Button>
+                        </div>
+                    </Row>
+                    {this.selectPage()}
+                </Container>
+
+            </div>
+        );
+    }
 }
 
 export default App;
