@@ -1,5 +1,5 @@
 import {Button, Card, Col, Row} from "react-bootstrap";
-import EditProductModal from "./EditProductModal";
+import ShowProductModal from "./ShowProductModal";
 import * as React from "react";
 
 class Product extends React.Component {
@@ -7,20 +7,20 @@ class Product extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            show: false,
+            showShowModal: false,
 
         }
     }
 
     toggleShowModal = () => {
         this.setState(prevState => ({
-            show: !prevState.show
+            showShowModal: !prevState.showShowModal
         }))
     }
 
-    onCancelModal = () => {
+    onCancelShowModal = () => {
         this.setState({
-            show: false
+            showShowModal: false
         })
     }
 
@@ -35,16 +35,16 @@ class Product extends React.Component {
                         <h1 style={{textAlign: "left"}}>{this.props.product.name}</h1>
                         <p style={{textAlign: "left"}}>{this.props.product.description}</p>
                         <div className="buttonWrapper">
-                            <Button variant="info">View</Button>
-                            <Button variant="warning" onClick={this.toggleShowModal}>Edit</Button>
+                            <Button variant="info" onClick={this.toggleShowModal}>View</Button>
+                            <Button variant="warning">Edit</Button>
                             <Button variant="danger"
                                     onClick={() => this.props.onDelete(this.props.product.id)}>Delete</Button>
                         </div>
                     </Col>
                 </Row>
-                <EditProductModal show={this.state.show}
+                <ShowProductModal show={this.state.showShowModal}
                                   product={this.props.product}
-                                  onCancel={this.onCancelModal}/>
+                                  onCancel={this.onCancelShowModal}/>
             </>
         )
     }

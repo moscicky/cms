@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Button, Col, Modal, Row} from "react-bootstrap";
 
-class EditProductModal extends React.Component {
+class ShowProductModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -39,13 +39,10 @@ class EditProductModal extends React.Component {
                     <Button variant="secondary" onClick={this.onCancel}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={this.onEdit}>
-                        Save Changes
-                    </Button>
                 </Modal.Footer>
             </Modal>
         )
     }
 }
 
-export default EditProductModal;
+export default ShowProductModal;

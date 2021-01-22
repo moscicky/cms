@@ -2,7 +2,7 @@ import * as React from "react";
 import axios from "axios";
 import Product from "./Product";
 import {Container} from "react-bootstrap";
-import EditProductModal from "./EditProductModal";
+import ShowProductModal from "./ShowProductModal";
 
 class Table extends React.Component {
     constructor() {

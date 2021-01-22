@@ -68,7 +68,7 @@ class ContactForm extends React.Component {
 
                         <Form.Group controlId="formContactMsg">
                             <Form.Label>Your message for us</Form.Label>
-                            <Form.Control size="lg" type="text" placeholder="Type your message"
+                            <Form.Control as="textarea" rows={3} size="lg" type="text" placeholder="Type your message"
                                           onChange={this.onMsgChange} value={this.state.contact.message}/>
                         </Form.Group>
                         <Button variant="primary" type="submit">
