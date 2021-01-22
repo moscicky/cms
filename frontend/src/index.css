@@ -24,3 +24,10 @@ code {
   display: flex;
   justify-content: space-between;
 }
+
+.buttonWrapperMain {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto
+}
