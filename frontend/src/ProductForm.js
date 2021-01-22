@@ -78,19 +78,19 @@ class ProductForm extends React.Component {
                         <Form.Group controlId="formProductName">
                             <Form.Label>Product name</Form.Label>
                             <Form.Control size="lg" type="text" placeholder="Enter product name"
-                                          onChange={this.onNameChange} value={this.state.product.name}/>
+                                          onChange={this.onNameChange} value={this.state.product.name} required />
                         </Form.Group>
 
                         <Form.Group controlId="formProductDescription">
                             <Form.Label>Product description</Form.Label>
                             <Form.Control size="lg" type="text" placeholder="Enter product description"
-                                          onChange={this.onDescriptionChange} value={this.state.product.description}/>
+                                          onChange={this.onDescriptionChange} value={this.state.product.description} required/>
                         </Form.Group>
 
                         <Form.Group controlId="formProductImageUrl">
                             <Form.Label>Product image url</Form.Label>
                             <Form.Control size="lg" type="text" placeholder="Enter product image url"
-                                          onChange={this.onUrlChange} value={this.state.product.imageUrl}/>
+                                          onChange={this.onUrlChange} value={this.state.product.imageUrl} required/>
                         </Form.Group>
 
                         <Button variant="primary" type="submit">

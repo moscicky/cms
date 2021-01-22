@@ -63,13 +63,13 @@ class ContactForm extends React.Component {
                         <Form.Group controlId="formContactEmail">
                             <Form.Label>Your email</Form.Label>
                             <Form.Control size="lg" type="email" placeholder="Enter your mail"
-                                          onChange={this.onEmailChange} value={this.state.contact.email}/>
+                                          onChange={this.onEmailChange} value={this.state.contact.email} required/>
                         </Form.Group>
 
                         <Form.Group controlId="formContactMsg">
                             <Form.Label>Your message for us</Form.Label>
                             <Form.Control as="textarea" rows={3} size="lg" type="text" placeholder="Type your message"
-                                          onChange={this.onMsgChange} value={this.state.contact.message}/>
+                                          onChange={this.onMsgChange} value={this.state.contact.message} required/>
                         </Form.Group>
                         <Button variant="primary" type="submit">
                             Submit
