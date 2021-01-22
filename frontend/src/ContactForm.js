@@ -58,7 +58,7 @@ class ContactForm extends React.Component {
     render() {
         return (
             <Row>
-                <Col lg={{span: 4, offset: 4}}>
+                <Col lg={{span: 6, offset: 3}}>
                     <Form onSubmit={this.onFormSubmit}>
                         <Form.Group controlId="formContactEmail">
                             <Form.Label>Your email</Form.Label>

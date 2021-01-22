@@ -73,7 +73,7 @@ class EditProductModal extends React.Component {
                 </Modal.Header>
                 <Modal.Body>
                     <Row>
-                        <Col lg={{span: 4, offset: 4}}>
+                        <Col lg={{span: 6, offset: 3}}>
                             <Form>
                                 <Form.Group controlId="formProductName">
                                     <Form.Label>Product name</Form.Label>
@@ -83,7 +83,7 @@ class EditProductModal extends React.Component {
 
                                 <Form.Group controlId="formProductDescription">
                                     <Form.Label>Product description</Form.Label>
-                                    <Form.Control size="lg" type="text" placeholder="Enter product description"
+                                    <Form.Control size="lg" as="textarea" rows={3} placeholder="Enter product description"
                                                   onChange={this.onDescriptionChange}
                                                   value={this.state.product.description} required/>
                                 </Form.Group>
