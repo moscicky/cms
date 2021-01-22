@@ -56,8 +56,7 @@ class EditProductModal extends React.Component {
             data: this.state.product,
         })
             .then(() => this.props.onCancel())
-
-
+            .then(() => this.props.editHandler())
     }
 
 

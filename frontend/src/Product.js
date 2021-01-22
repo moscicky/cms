@@ -60,7 +60,8 @@ class Product extends React.Component {
                                   onCancel={this.onCancelShowModal}/>
                 <EditProductModal show={this.state.showEditModal}
                                   product={this.props.product}
-                                  onCancel={this.onCancelEditModal}/>
+                                  onCancel={this.onCancelEditModal}
+                                  editHandler={this.props.onEdit}/>
             </>
         )
     }

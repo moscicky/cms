@@ -15,13 +15,22 @@ class Table extends React.Component {
     refreshProducts() {
         axios.get("http://localhost:8080/products")
             .then(resp => resp.data)
-            .then(data => this.setState({
-                products: data.content
-            }))
+            .then(data => {
+                if(data.page.totalElements > 0) {
+                    this.setState({
+                        products: data.content
+                    })
+                }
+            })
     }
 
     componentDidMount() {
        this.refreshProducts()
+
+    }
+
+    onProductEdit = () => {
+        this.refreshProducts()
     }
 
     onProductDelete = (id) => {
