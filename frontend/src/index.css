@@ -11,3 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.product-row {
+  border: 1px solid lightslategrey;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
+.buttonWrapper {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
