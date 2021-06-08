@@ -47,9 +47,10 @@ class Product extends React.Component {
                     <Col lg={{span: 8, offset: 1}}>
                         <h1 style={{textAlign: "left"}}>{this.props.product.name}</h1>
                         <p style={{textAlign: "left"}}>{this.props.product.description}</p>
+                        <p style={{textAlign: "left", textEmphasisStyle: "filled"}}>{this.props.product.price} zł</p>
                         <div className="buttonWrapper">
                             <Button variant="info" onClick={this.toggleShowModal}>View</Button>
-                            <Button variant="warning" onClick={this.toggleEditModal}>Edit</Button>
+                            <Button variant="warning" onClick={this.toggleEditModal}>Buy</Button>
                             <Button variant="danger"
                                     onClick={() => this.props.onDelete(this.props.product.id)}>Delete</Button>
                         </div>
@@ -59,7 +60,8 @@ class Product extends React.Component {
                                   product={this.props.product}
                                   onCancel={this.onCancelShowModal}/>
                 <EditProductModal show={this.state.showEditModal}
-                                  product={this.props.product}
+                                  id={this.props.product.id}
+                                  price={this.props.product.price}
                                   onCancel={this.onCancelEditModal}
                                   editHandler={this.props.onEdit}/>
             </>

@@ -6,18 +6,20 @@ class EditProductModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            price: props.price,
             show: props.show,
-            product: props.product
+            id: props.id,
+            quantity: 0,
+            promoCode: '',
+            cardNumber: ''
         }
     }
 
     onNameChange = (field) => {
         this.setState(
             {
-                product: {
-                    ...this.state.product,
-                    name: field.target.value,
-                }
+                ...this.state,
+                quantity: field.target.value,
             }
         )
     }
@@ -25,10 +27,8 @@ class EditProductModal extends React.Component {
     onDescriptionChange = (field) => {
         this.setState(
             {
-                product: {
-                    ...this.state.product,
-                    description: field.target.value,
-                }
+                ...this.state,
+                promoCode: field.target.value,
             }
         )
     }
@@ -36,10 +36,8 @@ class EditProductModal extends React.Component {
     onUrlChange = (field) => {
         this.setState(
             {
-                product: {
-                    ...this.state.product,
-                    imageUrl: field.target.value,
-                }
+                ...this.state,
+                cardNumber: field.target.value
             }
         )
     }
@@ -50,11 +48,15 @@ class EditProductModal extends React.Component {
 
     onEdit = () => {
         axios({
-            method: 'patch',
-            url: `http://localhost:8080/products/${this.props.product.id}`,
+            method: 'post',
+            url: `http://localhost:8080/shop/buy/${this.state.id}`,
             headers: {"Content-Type": "application/json"},
-            data: this.state.product,
+            data: {
+                quantity: this.state.quantity, promoCode: this.state.promoCode, creditCard: this.state.cardNumber
+            }
+
         })
+            .then((resp) => alert(resp.data.message))
             .then(() => this.props.onCancel())
             .then(() => this.props.editHandler())
     }
@@ -64,29 +66,30 @@ class EditProductModal extends React.Component {
         return (
             <Modal size="lg" show={this.props.show} onHide={this.onCancel}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Edit your product </Modal.Title>
+                    <Modal.Title>Buy product </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Row>
                         <Col lg={{span: 6, offset: 3}}>
+                            <p style={{textAlign: "left", textEmphasisStyle: "filled"}}>{this.state.price} zł</p>
                             <Form>
                                 <Form.Group controlId="formProductName">
-                                    <Form.Label>Product name</Form.Label>
-                                    <Form.Control size="lg" type="text" placeholder="Enter product name"
-                                                  onChange={this.onNameChange} value={this.state.product.name} required/>
+                                    <Form.Label>Quantity</Form.Label>
+                                    <Form.Control size="lg" type="text" placeholder="Select quantity"
+                                                  onChange={this.onNameChange} value={this.state.quantity} required/>
                                 </Form.Group>
-
                                 <Form.Group controlId="formProductDescription">
-                                    <Form.Label>Product description</Form.Label>
-                                    <Form.Control size="lg" as="textarea" rows={3} placeholder="Enter product description"
+                                    <Form.Label>Promo code</Form.Label>
+                                    <Form.Control size="lg" type="text" placeholder="Enter promo code"
                                                   onChange={this.onDescriptionChange}
-                                                  value={this.state.product.description} required/>
+                                                  value={this.state.promoCode} required/>
                                 </Form.Group>
 
                                 <Form.Group controlId="formProductImageUrl">
-                                    <Form.Label>Product image url</Form.Label>
-                                    <Form.Control size="lg" type="text" placeholder="Enter product image url"
-                                                  onChange={this.onUrlChange} value={this.state.product.imageUrl} required/>
+                                    <Form.Label>Credit card details (xxxx-xxxx-xxxx-xxxx)</Form.Label>
+                                    <Form.Control size="lg" type="text" placeholder="Enter credit card"
+                                                  onChange={this.onUrlChange} value={this.state.cardNumber}
+                                                  required/>
                                 </Form.Group>
                             </Form>
                         </Col>
@@ -97,7 +100,7 @@ class EditProductModal extends React.Component {
                         Close
                     </Button>
                     <Button variant="primary" onClick={this.onEdit}>
-                        Save changes
+                        Buy
                     </Button>
                 </Modal.Footer>
             </Modal>
