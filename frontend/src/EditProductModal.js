@@ -6,12 +6,14 @@ class EditProductModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            isMedicine: props.isMedicine,
             price: props.price,
             show: props.show,
             id: props.id,
             quantity: 0,
             promoCode: '',
-            cardNumber: ''
+            cardNumber: '',
+            prescriptionId: '',
         }
     }
 
@@ -63,6 +65,53 @@ class EditProductModal extends React.Component {
 
 
     render() {
+        let form;
+        if (this.state.isMedicine) {
+            form = (
+                <Form>
+                    <Form.Group controlId="formProductName">
+                        <Form.Label>Quantity</Form.Label>
+                        <Form.Control size="lg" type="text" placeholder="Select quantity"
+                                      onChange={this.onNameChange} value={this.state.quantity} required/>
+                    </Form.Group>
+                    <Form.Group controlId="formProductDescription">
+                        <Form.Label>Numer recepty</Form.Label>
+                        <Form.Control size="lg" type="text" placeholder="Numer recepty"
+                                      onChange={this.onDescriptionChange}
+                                      value={this.state.promoCode} required/>
+                    </Form.Group>
+
+                    <Form.Group controlId="formProductImageUrl">
+                        <Form.Label>Credit card details (xxxx-xxxx-xxxx-xxxx)</Form.Label>
+                        <Form.Control size="lg" type="text" placeholder="Enter credit card"
+                                      onChange={this.onUrlChange} value={this.state.cardNumber}
+                                      required/>
+                    </Form.Group>
+                </Form>
+            )
+        } else {
+            form = (<Form>
+                <Form.Group controlId="formProductName">
+                    <Form.Label>Quantity</Form.Label>
+                    <Form.Control size="lg" type="text" placeholder="Select quantity"
+                                  onChange={this.onNameChange} value={this.state.quantity} required/>
+                </Form.Group>
+                <Form.Group controlId="formProductDescription">
+                    <Form.Label>Promo code</Form.Label>
+                    <Form.Control size="lg" type="text" placeholder="Enter promo code"
+                                  onChange={this.onDescriptionChange}
+                                  value={this.state.promoCode} required/>
+                </Form.Group>
+
+                <Form.Group controlId="formProductImageUrl">
+                    <Form.Label>Credit card details (xxxx-xxxx-xxxx-xxxx)</Form.Label>
+                    <Form.Control size="lg" type="text" placeholder="Enter credit card"
+                                  onChange={this.onUrlChange} value={this.state.cardNumber}
+                                  required/>
+                </Form.Group>
+            </Form>)
+        }
+
         return (
             <Modal size="lg" show={this.props.show} onHide={this.onCancel}>
                 <Modal.Header closeButton>
@@ -72,26 +121,7 @@ class EditProductModal extends React.Component {
                     <Row>
                         <Col lg={{span: 6, offset: 3}}>
                             <p style={{textAlign: "left", textEmphasisStyle: "filled"}}>{this.state.price} zł</p>
-                            <Form>
-                                <Form.Group controlId="formProductName">
-                                    <Form.Label>Quantity</Form.Label>
-                                    <Form.Control size="lg" type="text" placeholder="Select quantity"
-                                                  onChange={this.onNameChange} value={this.state.quantity} required/>
-                                </Form.Group>
-                                <Form.Group controlId="formProductDescription">
-                                    <Form.Label>Promo code</Form.Label>
-                                    <Form.Control size="lg" type="text" placeholder="Enter promo code"
-                                                  onChange={this.onDescriptionChange}
-                                                  value={this.state.promoCode} required/>
-                                </Form.Group>
-
-                                <Form.Group controlId="formProductImageUrl">
-                                    <Form.Label>Credit card details (xxxx-xxxx-xxxx-xxxx)</Form.Label>
-                                    <Form.Control size="lg" type="text" placeholder="Enter credit card"
-                                                  onChange={this.onUrlChange} value={this.state.cardNumber}
-                                                  required/>
-                                </Form.Group>
-                            </Form>
+                            {form}
                         </Col>
                     </Row>
                 </Modal.Body>

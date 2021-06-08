@@ -7,6 +7,7 @@ class ContactForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            recepta: props.recepta,
             promo: {
                 code: "",
                 discount: 0,
@@ -17,6 +18,7 @@ class ContactForm extends React.Component {
     onEmailChange = (field) => {
         this.setState(
             {
+                ...this.state,
                 promo: {
                     ...this.state.promo,
                     code: field.target.value,
@@ -28,6 +30,7 @@ class ContactForm extends React.Component {
     onMsgChange = (field) => {
         this.setState(
             {
+                ...this.state,
                 promo: {
                     ...this.state.promo,
                     discount: field.target.value,
@@ -46,7 +49,7 @@ class ContactForm extends React.Component {
         }).then(
             (resp) => {
                 if (resp.status === 201) {
-                    alert(`Promo code ${this.state.promo.code} created`)
+                    alert(`Code ${this.state.promo.code} created.`)
                 }
             }
         )
@@ -59,25 +62,48 @@ class ContactForm extends React.Component {
     }
 
     render() {
+        let form
+        if (this.state.recepta) {
+            form = (<Form onSubmit={this.onFormSubmit}>
+                <Form.Group controlId="formContactEmail">
+                    <Form.Label>Kod recepty</Form.Label>
+                    <Form.Control size="lg" placeholder="Wpisz kod recepty"
+                                  onChange={this.onEmailChange} value={this.state.promo.code} required/>
+                </Form.Group>
+
+                <Form.Group controlId="formContactMsg">
+                    <Form.Label>Zniżka %</Form.Label>
+                    <Form.Control size="lg" type="text" placeholder="Wpisz procent zniżki"
+                                  onChange={this.onMsgChange} value={this.state.promo.discount} required/>
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                    Send
+                </Button>
+            </Form>)
+        } else {
+            form = (
+                <Form onSubmit={this.onFormSubmit}>
+                    <Form.Group controlId="formContactEmail">
+                        <Form.Label>Kod kuponu</Form.Label>
+                        <Form.Control size="lg" placeholder="Wpisz kod kuponu"
+                                      onChange={this.onEmailChange} value={this.state.promo.code} required/>
+                    </Form.Group>
+
+                    <Form.Group controlId="formContactMsg">
+                        <Form.Label>Zniżka %</Form.Label>
+                        <Form.Control size="lg" type="text" placeholder="Wpisz procent zniżki"
+                                      onChange={this.onMsgChange} value={this.state.promo.discount} required/>
+                    </Form.Group>
+                    <Button variant="primary" type="submit">
+                        Send
+                    </Button>
+                </Form>
+            )
+        }
         return (
             <Row>
                 <Col lg={{span: 6, offset: 3}}>
-                    <Form onSubmit={this.onFormSubmit}>
-                        <Form.Group controlId="formContactEmail">
-                            <Form.Label>Promo code</Form.Label>
-                            <Form.Control size="lg" placeholder="Enter promo code"
-                                          onChange={this.onEmailChange} value={this.state.promo.code} required/>
-                        </Form.Group>
-
-                        <Form.Group controlId="formContactMsg">
-                            <Form.Label>Discount %</Form.Label>
-                            <Form.Control size="lg" type="text" placeholder="Enter discount"
-                                          onChange={this.onMsgChange} value={this.state.promo.discount} required/>
-                        </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Send
-                        </Button>
-                    </Form>
+                    {form}
                 </Col>
             </Row>
         )

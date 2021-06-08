@@ -28,7 +28,9 @@ class App extends React.Component{
             case "newProduct":
                 return <ProductForm/>
             case "contactForm":
-                return <ContactForm/>
+                return <ContactForm recepta={false}/>
+            case "recepta":
+                return <ContactForm recepta={true}/>
             default:
                 return <Table/>
         }
@@ -42,6 +44,7 @@ class App extends React.Component{
                             <Button variant="success" onClick={() => this.setPage('newProduct')}>New Product</Button>
                             <Button variant="success" onClick={() => this.setPage('table')}>Table</Button>
                             <Button variant="info" onClick={() => this.setPage('contactForm')}>Add promo code</Button>
+                            <Button variant="info" onClick={() => this.setPage('recepta')}>Dodaj receptę</Button>
                         </div>
                     </Row>
                     {this.selectPage()}

@@ -38,6 +38,28 @@ class Product extends React.Component {
     }
 
     render() {
+        let buttons;
+
+        if (this.props.product.isMedicine) {
+            buttons = (
+                <div className="buttonWrapper">
+                    <Button variant="info" onClick={this.toggleShowModal}>Zobacz</Button>
+                    <Button variant="warning" onClick={this.toggleEditModal}>Kup z receptą</Button>
+                    <Button variant="danger"
+                            onClick={() => this.props.onDelete(this.props.product.id)}>Kup bez recepty</Button>
+                </div>
+            )
+        } else {
+            buttons = (
+                <div className="buttonWrapper">
+                    <Button variant="info" onClick={this.toggleShowModal}>Zobacz</Button>
+                    <Button variant="warning" onClick={this.toggleEditModal}>Kup</Button>
+                    <Button variant="danger"
+                            onClick={() => this.props.onDelete(this.props.product.id)}>Delete</Button>
+                </div>
+            )
+        }
+
         return (
             <>
                 <Row className="product-row">
@@ -48,12 +70,7 @@ class Product extends React.Component {
                         <h1 style={{textAlign: "left"}}>{this.props.product.name}</h1>
                         <p style={{textAlign: "left"}}>{this.props.product.description}</p>
                         <p style={{textAlign: "left", textEmphasisStyle: "filled"}}>{this.props.product.price} zł</p>
-                        <div className="buttonWrapper">
-                            <Button variant="info" onClick={this.toggleShowModal}>View</Button>
-                            <Button variant="warning" onClick={this.toggleEditModal}>Buy</Button>
-                            <Button variant="danger"
-                                    onClick={() => this.props.onDelete(this.props.product.id)}>Delete</Button>
-                        </div>
+                        {buttons}
                     </Col>
                 </Row>
                 <ShowProductModal show={this.state.showShowModal}
@@ -62,6 +79,7 @@ class Product extends React.Component {
                 <EditProductModal show={this.state.showEditModal}
                                   id={this.props.product.id}
                                   price={this.props.product.price}
+                                  isMedicine={this.props.product.isMedicine}
                                   onCancel={this.onCancelEditModal}
                                   editHandler={this.props.onEdit}/>
             </>
