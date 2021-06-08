@@ -2,9 +2,9 @@ package pl.moscicki.cms
 
 import org.springframework.data.annotation.Id
 
-data class Contact(
+data class Promo(
     @Id
     val id: String?,
-    val email: String,
-    val message: String?,
+    val code: String,
+    val discount: Int
 )

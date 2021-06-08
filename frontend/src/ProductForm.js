@@ -11,6 +11,7 @@ class ProductForm extends React.Component {
                 name: "",
                 description: "",
                 imageUrl: "",
+                price: 0
             },
 
         }
@@ -49,6 +50,17 @@ class ProductForm extends React.Component {
         )
     }
 
+    onPriceChange = (field) => {
+        this.setState(
+            {
+                product: {
+                    ...this.state.product,
+                    price: field.target.value,
+                }
+            }
+        )
+    }
+
     onFormSubmit = (e) => {
         e.preventDefault()
         axios({
@@ -72,21 +84,27 @@ class ProductForm extends React.Component {
                 <Col lg={{span: 6, offset: 3}}>
                     <Form onSubmit={this.onFormSubmit}>
                         <Form.Group controlId="formProductName">
-                            <Form.Label>Product name</Form.Label>
-                            <Form.Control size="lg" type="text" placeholder="Enter product name"
+                            <Form.Label>Nazwa produktu</Form.Label>
+                            <Form.Control size="lg" type="text" placeholder="Wpisz nazwę produktu"
                                           onChange={this.onNameChange} value={this.state.product.name} required />
                         </Form.Group>
 
                         <Form.Group controlId="formProductDescription">
-                            <Form.Label>Product description</Form.Label>
-                            <Form.Control size="lg" as="textarea" rows={3} placeholder="Enter product description"
+                            <Form.Label>Opis produktu</Form.Label>
+                            <Form.Control size="lg" as="textarea" rows={3} placeholder="Wpisz opis produktu"
                                           onChange={this.onDescriptionChange} value={this.state.product.description} required/>
                         </Form.Group>
 
                         <Form.Group controlId="formProductImageUrl">
-                            <Form.Label>Product image url</Form.Label>
-                            <Form.Control size="lg" type="text" placeholder="Enter product image url"
+                            <Form.Label>Zdjęcie produktu</Form.Label>
+                            <Form.Control size="lg" type="text" placeholder="Wklej link do zdjęcia produktu"
                                           onChange={this.onUrlChange} value={this.state.product.imageUrl} required/>
+                        </Form.Group>
+
+                        <Form.Group controlId="formProductName">
+                            <Form.Label>Cena produktu</Form.Label>
+                            <Form.Control size="lg" type="text" placeholder="Wpisz cenę produktu"
+                                          onChange={this.onPriceChange} value={this.state.product.price} required />
                         </Form.Group>
 
                         <Button variant="primary" type="submit">

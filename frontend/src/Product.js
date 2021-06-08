@@ -1,13 +1,14 @@
 import {Button, Card, Col, Row} from "react-bootstrap";
 import ShowProductModal from "./ShowProductModal";
 import * as React from "react";
-import EditProductModal from "./EditProductModal";
+import BuyProductModal from "./BuyProductModal";
 
 class Product extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            withoutPrescription: false,
             showShowModal: false,
             showEditModal: false
         }
@@ -31,6 +32,17 @@ class Product extends React.Component {
         }))
     }
 
+    getWithoutPrescription = () => {
+        return this.state.withoutPrescription
+    }
+
+    togglePrescription = () => {
+        this.setState(prevState => ({
+            withoutPrescription: true,
+            showEditModal: !prevState.showEditModal
+        }))
+    }
+
     onCancelEditModal = () => {
         this.setState({
             showEditModal: false
@@ -38,6 +50,26 @@ class Product extends React.Component {
     }
 
     render() {
+        let buttons;
+
+        if (this.props.product.isMedicine) {
+            buttons = (
+                <div className="buttonWrapper">
+                    <Button variant="info" onClick={this.toggleShowModal}>Zobacz</Button>
+                    <Button variant="warning" onClick={this.toggleEditModal}>Kup z receptą</Button>
+                    <Button variant="danger"
+                            onClick={this.togglePrescription}>Kup bez recepty</Button>
+                </div>
+            )
+        } else {
+            buttons = (
+                <div className="buttonWrapper">
+                    <Button variant="info" onClick={this.toggleShowModal}>Zobacz</Button>
+                    <Button variant="warning" onClick={this.toggleEditModal}>Kup</Button>
+                </div>
+            )
+        }
+
         return (
             <>
                 <Row className="product-row">
@@ -47,21 +79,20 @@ class Product extends React.Component {
                     <Col lg={{span: 8, offset: 1}}>
                         <h1 style={{textAlign: "left"}}>{this.props.product.name}</h1>
                         <p style={{textAlign: "left"}}>{this.props.product.description}</p>
-                        <div className="buttonWrapper">
-                            <Button variant="info" onClick={this.toggleShowModal}>View</Button>
-                            <Button variant="warning" onClick={this.toggleEditModal}>Edit</Button>
-                            <Button variant="danger"
-                                    onClick={() => this.props.onDelete(this.props.product.id)}>Delete</Button>
-                        </div>
+                        <p style={{textAlign: "left", textEmphasisStyle: "filled"}}>{this.props.product.price} zł</p>
+                        {buttons}
                     </Col>
                 </Row>
                 <ShowProductModal show={this.state.showShowModal}
                                   product={this.props.product}
                                   onCancel={this.onCancelShowModal}/>
-                <EditProductModal show={this.state.showEditModal}
-                                  product={this.props.product}
-                                  onCancel={this.onCancelEditModal}
-                                  editHandler={this.props.onEdit}/>
+                <BuyProductModal show={this.state.showEditModal}
+                                 id={this.props.product.id}
+                                 price={this.props.product.price}
+                                 isMedicine={this.props.product.isMedicine}
+                                 withoutCode={this.getWithoutPrescription}
+                                 onCancel={this.onCancelEditModal}
+                                 editHandler={this.props.onEdit}/>
             </>
         )
     }

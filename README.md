@@ -1,15 +1,11 @@
 ## Systemy zarządzania treścią: Projekt zaliczeniowy
 
 ### Opis funkcjonalności
-Aplikacja umożliwia proste zarządzanie listą produktów:
-- listowanie produktów
-- tworzenie produktów
-- edytowanie produktów
-- usuwanie produktów
-- widok jednego produktu
 
-Dodatkowo: 
-- formularz kontaktowy
+1. sklep internetowy z funkcją płatności demo - done
+2. sklep z programem partnerskim, partnerzy generują linki, jak ktoś się z linku rejestruje i kupuje coś to partner sklepu dostaje prowizję
+3. Apteka - refundacja leków, możliwość zakupu leków z recepty i takich bez recepty
+4. sklep internatowy z kodami rabatowymi - done
 
 ### Technologie
 

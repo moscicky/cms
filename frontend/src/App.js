@@ -3,7 +3,7 @@ import Table from './Table'
 import ProductForm from "./ProductForm";
 import {Button, Container, Row} from "react-bootstrap";
 import * as React from "react";
-import ContactForm from "./ContactForm";
+import PromoForm from "./PromoForm";
 
 class App extends React.Component{
     constructor(props) {
@@ -28,7 +28,9 @@ class App extends React.Component{
             case "newProduct":
                 return <ProductForm/>
             case "contactForm":
-                return <ContactForm/>
+                return <PromoForm recepta={false}/>
+            case "recepta":
+                return <PromoForm recepta={true}/>
             default:
                 return <Table/>
         }
@@ -39,9 +41,10 @@ class App extends React.Component{
                 <Container>
                     <Row style={{marginBottom: '30px', marginTop: '30px'}}>
                         <div className="buttonWrapperMain">
-                            <Button variant="success" onClick={() => this.setPage('newProduct')}>New Product</Button>
-                            <Button variant="success" onClick={() => this.setPage('table')}>Table</Button>
-                            <Button variant="info" onClick={() => this.setPage('contactForm')}>Contact form</Button>
+                            <Button variant="success" onClick={() => this.setPage('newProduct')}>Nowy Produkt</Button>
+                            <Button variant="info" onClick={() => this.setPage('table')}>Listing</Button>
+                            <Button variant="success" onClick={() => this.setPage('contactForm')}>Dodaj kod promocyjny</Button>
+                            <Button variant="info" onClick={() => this.setPage('recepta')}>Dodaj receptę</Button>
                         </div>
                     </Row>
                     {this.selectPage()}

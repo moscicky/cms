@@ -9,4 +9,6 @@ data class Product(
     val name: String,
     val description: String?,
     val imageUrl: String?,
+    val price: Float,
+    val isMedicine: Boolean
 )
