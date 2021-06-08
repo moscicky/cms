@@ -43,15 +43,12 @@ class PromoForm extends React.Component {
         e.preventDefault()
         axios({
             method: 'post',
-            url: "http://localhost:8080/promo",
+            url: "http://localhost:8080/promos",
             headers: {"Content-Type": "application/json"},
             data: this.state.promo,
         }).then(
-            (resp) => {
-                if (resp.status === 201) {
-                    alert(`Code ${this.state.promo.code} created.`)
-                }
-            }
+            (resp) => alert(resp.data.message)
+
         )
         this.setState({
             contact: {

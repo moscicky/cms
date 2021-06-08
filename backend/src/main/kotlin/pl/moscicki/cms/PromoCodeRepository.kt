@@ -2,7 +2,7 @@ package pl.moscicki.cms
 
 import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.data.rest.core.annotation.RepositoryRestResource
-import org.springframework.web.bind.annotation.CrossOrigin
+import org.springframework.web.bind.annotation.*
 
 @RepositoryRestResource(
     path = "promo",
@@ -10,3 +10,18 @@ import org.springframework.web.bind.annotation.CrossOrigin
 )
 @CrossOrigin
 interface PromoCodeRepository : MongoRepository<Promo, String>
+
+@RestController
+@RequestMapping("/promos")
+@CrossOrigin
+class PromoEndpoint(val promoCodeRepository: PromoCodeRepository) {
+
+    @CrossOrigin
+    @PostMapping
+    fun createPromo(@RequestBody promo: Promo): PromoResponse {
+        promoCodeRepository.save(promo)
+        return PromoResponse("Utworzono kod: ${promo.code}")
+    }
+}
+
+data class PromoResponse(val message: String)

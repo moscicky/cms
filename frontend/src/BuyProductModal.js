@@ -59,7 +59,14 @@ class BuyProductModal extends React.Component {
             }
 
         })
-            .then((resp) => alert(resp.data.message))
+            .then((resp) => alert(resp.data.message), (resp) => {
+                if (resp.data !== undefined) {
+                    alert(resp.data.message)
+                } else {
+                    alert("Błąd!")
+                }
+
+            })
             .then(() => this.props.onCancel())
             .then(() => this.props.editHandler())
     }

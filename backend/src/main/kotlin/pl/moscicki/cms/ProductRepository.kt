@@ -20,9 +20,14 @@ class ShopEndpoint(val productRepository: ProductRepository, val promoCodeReposi
     @CrossOrigin("*")
     fun buy(@PathVariable id: String, @RequestBody buyRequest: BuyRequest): BuyResponse {
         val product = productRepository.findById(id)
+
         return if (product.isEmpty) {
             BuyResponse("No such product")
         } else {
+            if (!buyRequest.creditCard.matches("((\\d){4}-){3}(\\d){4}".toRegex())) {
+                return BuyResponse("invalid credit catd number")
+            }
+
             val promo = promoCodeRepository.findAll().firstOrNull { it.code == buyRequest.promoCode }
             val discount = promo?.discount ?: 0
 
