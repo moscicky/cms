@@ -2,10 +2,10 @@
 
 ### Opis funkcjonalności
 
-1. sklep internetowy z funkcją płatności demo
+1. sklep internetowy z funkcją płatności demo - done
 2. sklep z programem partnerskim, partnerzy generują linki, jak ktoś się z linku rejestruje i kupuje coś to partner sklepu dostaje prowizję
 3. Apteka - refundacja leków, możliwość zakupu leków z recepty i takich bez recepty
-4. sklep internatowy z kodami rabatowymi
+4. sklep internatowy z kodami rabatowymi - done
 
 ### Technologie
 

@@ -14,7 +14,7 @@ interface ProductRepository : MongoRepository<Product, String>
 @RestController
 @RequestMapping("/shop")
 @CrossOrigin("*")
-class ShopEndpoint(val productRepository: ProductRepository) {
+class ShopEndpoint(val productRepository: ProductRepository, val promoCodeRepository: PromoCodeRepository) {
 
     @PostMapping("/buy/{id}")
     @CrossOrigin("*")
@@ -23,8 +23,12 @@ class ShopEndpoint(val productRepository: ProductRepository) {
         return if (product.isEmpty) {
             BuyResponse("No such product")
         } else {
+            val promo = promoCodeRepository.findAll().firstOrNull { it.code == buyRequest.promoCode }
+            val discount = promo?.discount ?: 0
+
             val price = buyRequest.quantity * product.get().price
-            BuyResponse("You have been charged $price")
+            val priceAfterDiscount = price - price * discount/100
+            BuyResponse("You have been charged $priceAfterDiscount. Discount: $discount %")
         }
 
     }

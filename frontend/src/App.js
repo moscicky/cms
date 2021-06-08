@@ -41,7 +41,7 @@ class App extends React.Component{
                         <div className="buttonWrapperMain">
                             <Button variant="success" onClick={() => this.setPage('newProduct')}>New Product</Button>
                             <Button variant="success" onClick={() => this.setPage('table')}>Table</Button>
-                            <Button variant="info" onClick={() => this.setPage('contactForm')}>Contact form</Button>
+                            <Button variant="info" onClick={() => this.setPage('contactForm')}>Add promo code</Button>
                         </div>
                     </Row>
                     {this.selectPage()}
