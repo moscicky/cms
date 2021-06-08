@@ -2,7 +2,7 @@ import * as React from "react";
 import {Button, Col, Form, Modal, Row} from "react-bootstrap";
 import axios from "axios";
 
-class EditProductModal extends React.Component {
+class BuyProductModal extends React.Component {
     constructor(props) {
         super(props);
         console.log(props)
@@ -18,7 +18,7 @@ class EditProductModal extends React.Component {
         }
     }
 
-    onNameChange = (field) => {
+    onQuantityChange = (field) => {
         this.setState(
             {
                 ...this.state,
@@ -27,7 +27,7 @@ class EditProductModal extends React.Component {
         )
     }
 
-    onDescriptionChange = (field) => {
+    onPromoCodeChange = (field) => {
         this.setState(
             {
                 ...this.state,
@@ -36,7 +36,7 @@ class EditProductModal extends React.Component {
         )
     }
 
-    onUrlChange = (field) => {
+    onCardNumberChange = (field) => {
         this.setState(
             {
                 ...this.state,
@@ -75,7 +75,7 @@ class EditProductModal extends React.Component {
                 discount = (<Form.Group controlId="formProductDescription">
                     <Form.Label>Numer recepty</Form.Label>
                     <Form.Control size="lg" type="text" placeholder="Numer recepty"
-                                  onChange={this.onDescriptionChange}
+                                  onChange={this.onPromoCodeChange}
                                   value={this.state.promoCode} required/>
                 </Form.Group>)
             }
@@ -85,13 +85,13 @@ class EditProductModal extends React.Component {
                     <Form.Group controlId="formProductName">
                         <Form.Label>Quantity</Form.Label>
                         <Form.Control size="lg" type="text" placeholder="Select quantity"
-                                      onChange={this.onNameChange} value={this.state.quantity} required/>
+                                      onChange={this.onQuantityChange} value={this.state.quantity} required/>
                     </Form.Group>
                     {discount}
                     <Form.Group controlId="formProductImageUrl">
                         <Form.Label>Credit card details (xxxx-xxxx-xxxx-xxxx)</Form.Label>
                         <Form.Control size="lg" type="text" placeholder="Enter credit card"
-                                      onChange={this.onUrlChange} value={this.state.cardNumber}
+                                      onChange={this.onCardNumberChange} value={this.state.cardNumber}
                                       required/>
                     </Form.Group>
                 </Form>
@@ -101,19 +101,19 @@ class EditProductModal extends React.Component {
                 <Form.Group controlId="formProductName">
                     <Form.Label>Quantity</Form.Label>
                     <Form.Control size="lg" type="text" placeholder="Select quantity"
-                                  onChange={this.onNameChange} value={this.state.quantity} required/>
+                                  onChange={this.onQuantityChange} value={this.state.quantity} required/>
                 </Form.Group>
                 <Form.Group controlId="formProductDescription">
                     <Form.Label>Promo code</Form.Label>
                     <Form.Control size="lg" type="text" placeholder="Enter promo code"
-                                  onChange={this.onDescriptionChange}
+                                  onChange={this.onPromoCodeChange}
                                   value={this.state.promoCode} required/>
                 </Form.Group>
 
                 <Form.Group controlId="formProductImageUrl">
                     <Form.Label>Credit card details (xxxx-xxxx-xxxx-xxxx)</Form.Label>
                     <Form.Control size="lg" type="text" placeholder="Enter credit card"
-                                  onChange={this.onUrlChange} value={this.state.cardNumber}
+                                  onChange={this.onCardNumberChange} value={this.state.cardNumber}
                                   required/>
                 </Form.Group>
             </Form>)
@@ -148,4 +148,4 @@ class EditProductModal extends React.Component {
     }
 }
 
-export default EditProductModal;
+export default BuyProductModal;

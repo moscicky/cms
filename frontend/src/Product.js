@@ -1,7 +1,7 @@
 import {Button, Card, Col, Row} from "react-bootstrap";
 import ShowProductModal from "./ShowProductModal";
 import * as React from "react";
-import EditProductModal from "./EditProductModal";
+import BuyProductModal from "./BuyProductModal";
 
 class Product extends React.Component {
 
@@ -86,13 +86,13 @@ class Product extends React.Component {
                 <ShowProductModal show={this.state.showShowModal}
                                   product={this.props.product}
                                   onCancel={this.onCancelShowModal}/>
-                <EditProductModal show={this.state.showEditModal}
-                                  id={this.props.product.id}
-                                  price={this.props.product.price}
-                                  isMedicine={this.props.product.isMedicine}
-                                  withoutCode={this.getWithoutPrescription}
-                                  onCancel={this.onCancelEditModal}
-                                  editHandler={this.props.onEdit}/>
+                <BuyProductModal show={this.state.showEditModal}
+                                 id={this.props.product.id}
+                                 price={this.props.product.price}
+                                 isMedicine={this.props.product.isMedicine}
+                                 withoutCode={this.getWithoutPrescription}
+                                 onCancel={this.onCancelEditModal}
+                                 editHandler={this.props.onEdit}/>
             </>
         )
     }

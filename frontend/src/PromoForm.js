@@ -2,7 +2,7 @@ import {Button, Col, Form, Row} from "react-bootstrap";
 import * as React from "react";
 import axios from "axios";
 
-class ContactForm extends React.Component {
+class PromoForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -15,7 +15,7 @@ class ContactForm extends React.Component {
         }
     }
 
-    onEmailChange = (field) => {
+    onCodeChange = (field) => {
         this.setState(
             {
                 ...this.state,
@@ -27,7 +27,7 @@ class ContactForm extends React.Component {
         )
     }
 
-    onMsgChange = (field) => {
+    onDiscountChange = (field) => {
         this.setState(
             {
                 ...this.state,
@@ -68,13 +68,13 @@ class ContactForm extends React.Component {
                 <Form.Group controlId="formContactEmail">
                     <Form.Label>Kod recepty</Form.Label>
                     <Form.Control size="lg" placeholder="Wpisz kod recepty"
-                                  onChange={this.onEmailChange} value={this.state.promo.code} required/>
+                                  onChange={this.onCodeChange} value={this.state.promo.code} required/>
                 </Form.Group>
 
                 <Form.Group controlId="formContactMsg">
                     <Form.Label>Zniżka %</Form.Label>
                     <Form.Control size="lg" type="text" placeholder="Wpisz procent zniżki"
-                                  onChange={this.onMsgChange} value={this.state.promo.discount} required/>
+                                  onChange={this.onDiscountChange} value={this.state.promo.discount} required/>
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Send
@@ -86,13 +86,13 @@ class ContactForm extends React.Component {
                     <Form.Group controlId="formContactEmail">
                         <Form.Label>Kod kuponu</Form.Label>
                         <Form.Control size="lg" placeholder="Wpisz kod kuponu"
-                                      onChange={this.onEmailChange} value={this.state.promo.code} required/>
+                                      onChange={this.onCodeChange} value={this.state.promo.code} required/>
                     </Form.Group>
 
                     <Form.Group controlId="formContactMsg">
                         <Form.Label>Zniżka %</Form.Label>
                         <Form.Control size="lg" type="text" placeholder="Wpisz procent zniżki"
-                                      onChange={this.onMsgChange} value={this.state.promo.discount} required/>
+                                      onChange={this.onDiscountChange} value={this.state.promo.discount} required/>
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Send
@@ -110,4 +110,4 @@ class ContactForm extends React.Component {
     }
 }
 
-export default ContactForm;
+export default PromoForm;
