@@ -25,7 +25,7 @@ class ShopEndpoint(val productRepository: ProductRepository, val promoCodeReposi
             BuyResponse("No such product")
         } else {
             if (!buyRequest.creditCard.matches("((\\d){4}-){3}(\\d){4}".toRegex())) {
-                return BuyResponse("invalid credit catd number")
+                return BuyResponse("Niepoprawny numer karty")
             }
 
             val promo = promoCodeRepository.findAll().firstOrNull { it.code == buyRequest.promoCode }
@@ -33,7 +33,7 @@ class ShopEndpoint(val productRepository: ProductRepository, val promoCodeReposi
 
             val price = buyRequest.quantity * product.get().price
             val priceAfterDiscount = price - price * discount/100
-            BuyResponse("You have been charged $priceAfterDiscount. Discount: $discount %")
+            BuyResponse("Pobrano z akrty: $priceAfterDiscount. Zniżka: $discount %")
         }
 
     }
