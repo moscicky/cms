@@ -5,6 +5,7 @@ import axios from "axios";
 class EditProductModal extends React.Component {
     constructor(props) {
         super(props);
+        console.log(props)
         this.state = {
             isMedicine: props.isMedicine,
             price: props.price,
@@ -67,6 +68,18 @@ class EditProductModal extends React.Component {
     render() {
         let form;
         if (this.state.isMedicine) {
+            let discount;
+            if (this.props.withoutCode()) {
+                discount = null
+            } else {
+                discount = (<Form.Group controlId="formProductDescription">
+                    <Form.Label>Numer recepty</Form.Label>
+                    <Form.Control size="lg" type="text" placeholder="Numer recepty"
+                                  onChange={this.onDescriptionChange}
+                                  value={this.state.promoCode} required/>
+                </Form.Group>)
+            }
+
             form = (
                 <Form>
                     <Form.Group controlId="formProductName">
@@ -74,13 +87,7 @@ class EditProductModal extends React.Component {
                         <Form.Control size="lg" type="text" placeholder="Select quantity"
                                       onChange={this.onNameChange} value={this.state.quantity} required/>
                     </Form.Group>
-                    <Form.Group controlId="formProductDescription">
-                        <Form.Label>Numer recepty</Form.Label>
-                        <Form.Control size="lg" type="text" placeholder="Numer recepty"
-                                      onChange={this.onDescriptionChange}
-                                      value={this.state.promoCode} required/>
-                    </Form.Group>
-
+                    {discount}
                     <Form.Group controlId="formProductImageUrl">
                         <Form.Label>Credit card details (xxxx-xxxx-xxxx-xxxx)</Form.Label>
                         <Form.Control size="lg" type="text" placeholder="Enter credit card"
@@ -120,7 +127,10 @@ class EditProductModal extends React.Component {
                 <Modal.Body>
                     <Row>
                         <Col lg={{span: 6, offset: 3}}>
-                            <p style={{textAlign: "left", textEmphasisStyle: "filled"}}>{this.state.price} zł</p>
+                            <p style={{
+                                textAlign: "left",
+                                textEmphasisStyle: "filled"
+                            }}>{this.state.price} zł</p>
                             {form}
                         </Col>
                     </Row>

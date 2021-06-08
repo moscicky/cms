@@ -8,6 +8,7 @@ class Product extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            withoutPrescription: false,
             showShowModal: false,
             showEditModal: false
         }
@@ -31,6 +32,17 @@ class Product extends React.Component {
         }))
     }
 
+    getWithoutPrescription = () => {
+        return this.state.withoutPrescription
+    }
+
+    togglePrescription = () => {
+        this.setState(prevState => ({
+            withoutPrescription: true,
+            showEditModal: !prevState.showEditModal
+        }))
+    }
+
     onCancelEditModal = () => {
         this.setState({
             showEditModal: false
@@ -46,7 +58,7 @@ class Product extends React.Component {
                     <Button variant="info" onClick={this.toggleShowModal}>Zobacz</Button>
                     <Button variant="warning" onClick={this.toggleEditModal}>Kup z receptą</Button>
                     <Button variant="danger"
-                            onClick={() => this.props.onDelete(this.props.product.id)}>Kup bez recepty</Button>
+                            onClick={this.togglePrescription}>Kup bez recepty</Button>
                 </div>
             )
         } else {
@@ -54,8 +66,6 @@ class Product extends React.Component {
                 <div className="buttonWrapper">
                     <Button variant="info" onClick={this.toggleShowModal}>Zobacz</Button>
                     <Button variant="warning" onClick={this.toggleEditModal}>Kup</Button>
-                    <Button variant="danger"
-                            onClick={() => this.props.onDelete(this.props.product.id)}>Delete</Button>
                 </div>
             )
         }
@@ -80,6 +90,7 @@ class Product extends React.Component {
                                   id={this.props.product.id}
                                   price={this.props.product.price}
                                   isMedicine={this.props.product.isMedicine}
+                                  withoutCode={this.getWithoutPrescription}
                                   onCancel={this.onCancelEditModal}
                                   editHandler={this.props.onEdit}/>
             </>
