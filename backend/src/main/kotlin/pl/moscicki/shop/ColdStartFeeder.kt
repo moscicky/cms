@@ -1,4 +1,4 @@
-package pl.moscicki.cms
+package pl.moscicki.shop
 
 import org.springframework.boot.CommandLineRunner
 import org.springframework.stereotype.Component

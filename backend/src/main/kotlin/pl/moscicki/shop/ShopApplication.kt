@@ -1,12 +1,11 @@
-package pl.moscicki.cms
+package pl.moscicki.shop
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.web.bind.annotation.CrossOrigin
 
 @SpringBootApplication
-class CmsApplication
+class ShopApplication
 
 fun main(args: Array<String>) {
-    runApplication<CmsApplication>(*args)
+    runApplication<ShopApplication>(*args)
 }
